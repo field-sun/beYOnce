@@ -15,7 +15,7 @@ angular.module('starter.controllers', ['ionic.contrib.ui.tinderCards'])
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
     Profile.storeProfile(profile, idToken);
-    $state.go('app.main');
+    // $state.go('app.main');
   }, function(error) {
     console.log("There was an error logging in", error);
   })
