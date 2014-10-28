@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic.contrib.ui.tinderCards'])
 
-.controller('EntryCtrl', function($scope, auth, $state, store) {
+.controller('EntryCtrl', function($scope, auth, $state, store, Profile) {
   auth.signin({
     popup: true,
     // Make the widget non closeable
@@ -14,6 +14,7 @@ angular.module('starter.controllers', ['ionic.contrib.ui.tinderCards'])
     store.set('profile', profile);
     store.set('token', idToken);
     store.set('refreshToken', refreshToken);
+    Profile.storeProfile(profile, idToken);
     $state.go('app.main');
   }, function(error) {
     console.log("There was an error logging in", error);
