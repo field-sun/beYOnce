@@ -99,14 +99,22 @@ angular.module('starter', ['ionic',
           templateUrl: "templates/matches.html"
         }
       }
-    })
+    });
 
     // Configure Auth0
     authProvider.init({
       domain: AUTH0_DOMAIN,
       clientID: AUTH0_CLIENT_ID,
+      callbackUrl: AUTH0_CALLBACK_URL,
       loginState: 'entry'
-    })
+    });
+
+    authProvider.on('loginSuccess', function($state, $timeout) {
+      $timeout(function() {
+        $state.go('app.main');
+      })
+    });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise("/");
